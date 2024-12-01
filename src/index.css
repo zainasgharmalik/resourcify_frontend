@@ -68,7 +68,11 @@ h1 {
 }
 
 p {
-  @apply text-text font-gilroy-medium text-center lg:text-lg;
+  @apply text-zinc-600 font-gilroy-medium text-center lg:text-lg;
+}
+
+input {
+  @apply w-full p-2.5 bg-transparent border border-zinc-400 rounded-md font-gilroy-medium text-black outline-none;
 }
 
 /* Custom Classes */
@@ -78,4 +82,8 @@ p {
 
 .secondary-btn {
   @apply border border-zinc-400 text-zinc-700 font-gilroy-medium lg:w-[150px] w-[120px] text-center p-2.5 rounded-md hover:bg-accentHover hover:ease-in hover:duration-200 hover:border-none hover:text-white;
+}
+
+.input-label {
+  @apply font-gilroy-medium text-zinc-600 inline-block;
 }

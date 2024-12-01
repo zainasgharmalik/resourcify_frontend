@@ -28,7 +28,7 @@ const Header = () => {
                 </div>
 
                 <div>
-                    <Link className="primary-btn inline-block">Login</Link>
+                    <Link to={'/login'} className="primary-btn inline-block">Login</Link>
                 </div>
 
 
