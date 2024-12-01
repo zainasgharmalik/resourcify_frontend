@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+/* Fonts Initialization */
+@font-face {
+  font-family: clemente_light;
+  src: url("./assets/fonts/clemente/clemente_light.ttf");
+}
+
+@font-face {
+  font-family: clemente_regular;
+  src: url("./assets/fonts/clemente/clemente_regular.ttf");
+}
+
+@font-face {
+  font-family: clemente_semibold;
+  src: url("./assets/fonts/clemente/clemente_semibold.ttf");
+}
+
+@font-face {
+  font-family: clemente_bold;
+  src: url("./assets/fonts/clemente/clemente_bold.ttf");
+}
+
+@font-face {
+  font-family: clemente_book;
+  src: url("./assets/fonts/clemente/clemente_bold.ttf");
+}
+
+@font-face {
+  font-family: gilroy_light;
+  src: url("./assets/fonts/gilroy/gilroy_light.ttf");
+}
+
+@font-face {
+  font-family: gilroy_regular;
+  src: url("./assets/fonts/gilroy/gilroy_regular.ttf");
+}
+
+@font-face {
+  font-family: gilroy_medium;
+  src: url("./assets/fonts/gilroy/gilroy_medium.ttf");
+}
+
+@font-face {
+  font-family: gilroy_semibold;
+  src: url("./assets/fonts/gilroy/gilroy_semibold.ttf");
+}
+
+@font-face {
+  font-family: gilroy_bold;
+  src: url("./assets/fonts/gilroy/gilroy_bold.ttf");
+}
+
+/* Fonts Initialization */
+
+section {
+  @apply p-[25px] lg:p-[50px]  pt-[112px] lg:pt-[132px];
+}
+
+h1 {
+  @apply font-clemente-semibold text-3xl lg:text-5xl text-center text-black;
+}
+
+p {
+  @apply text-text font-gilroy-medium text-center lg:text-lg;
+}
+
+/* Custom Classes */
+.primary-btn {
+  @apply bg-accent text-white font-gilroy-medium lg:w-[150px] w-[120px] text-center p-2.5 rounded-md hover:bg-accentHover hover:ease-in hover:duration-200;
+}
+
+.secondary-btn {
+  @apply border border-zinc-400 text-zinc-700 font-gilroy-medium lg:w-[150px] w-[120px] text-center p-2.5 rounded-md hover:bg-accentHover hover:ease-in hover:duration-200 hover:border-none hover:text-white;
+}
