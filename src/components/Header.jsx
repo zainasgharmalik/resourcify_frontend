@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom"
 import { assets } from "../assets"
 
-const Header = () => {
+const Header = ({ isAuthenticated, user }) => {
     const location = useLocation()
 
     const isActive = (path) => {
@@ -13,7 +13,7 @@ const Header = () => {
 
 
     return (
-        <header className="lg:px-[50px] px-[25px] py-[16px] lg:h-[100px] h-[80px] fixed top-0 left-0  w-full">
+        <header className={isAuthenticated && user.role === "admin" || isAuthenticated && user.role === "librarian" ? "hidden" : "lg:px-[50px] px-[25px] py-[16px] lg:h-[100px] h-[80px] fixed top-0 left-0  w-full"}>
             <nav className="w-full h-full border-b border-zinc-200 pb-[8px] flex items-center justify-between bg-white">
 
                 <div className="logo h-full flex items-center gap-[8px]">
@@ -27,8 +27,12 @@ const Header = () => {
                     ))}
                 </div>
 
-                <div>
+                <div className={isAuthenticated ? "hidden" : ""}>
                     <Link to={'/login'} className="primary-btn inline-block">Login</Link>
+                </div>
+
+                <div className={isAuthenticated ? "" : "hidden"}>
+                    <img className="rounded-full object-cover object-center" src="https://placehold.co/56x56" alt="" />
                 </div>
 
 
