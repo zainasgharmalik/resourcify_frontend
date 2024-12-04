@@ -70,8 +70,12 @@ h1 {
   @apply font-clemente-semibold text-3xl lg:text-5xl text-center text-black;
 }
 
+h2 {
+  @apply font-clemente-regular text-4xl;
+}
+
 p {
-  @apply text-zinc-600 font-gilroy-medium text-center lg:text-lg;
+  @apply text-zinc-600 font-gilroy-medium lg:text-lg;
 }
 
 input {
@@ -109,6 +113,10 @@ table {
   @apply font-gilroy-medium text-zinc-600 inline-block;
 }
 
-.actions{
-  @apply flex gap-[8px]
+.actions {
+  @apply flex gap-[8px] items-center justify-center;
+}
+
+.sec-section {
+  @apply !py-0 !pb-[25px] lg:!pb-[50px];
 }

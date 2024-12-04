@@ -27,9 +27,10 @@ const Sidebar = ({ routes, component: Component }) => {
     };
 
     return (
-        <section className="w-full bg-border h-screen grid grid-cols-[320px_1fr] p-[32px] gap-[16px]">
+        <section className="w-full bg-border min-h-screen grid grid-cols-[320px_1fr] p-[32px] gap-[16px]">
             {/* Sidebar Routes */}
-            <div className="routes bg-white rounded-lg p-[16px] grid grid-rows-[72px_1fr_72px] grid-cols-1">
+            
+            <div className="routes max-h-screen h-full bg-white rounded-lg p-[16px] grid grid-rows-[72px_1fr_72px] grid-cols-1">
                 <div className="logo flex items-center gap-[4px]">
                     <img className="w-[72px] h-[72px]" src={assets.logo} alt="Logo" />
                     <h2 className="text-3xl font-clemente-regular">Resourcify</h2>
@@ -100,10 +101,11 @@ const Sidebar = ({ routes, component: Component }) => {
                         <IoMdLogOut className="text-2xl" />
                     </button>
                 </div>
+
             </div>
 
             {/* Main Component Area */}
-            <div className="component-area">
+            <div className="component-area w-full bg-border overflow-x-auto">
                 <Component />
             </div>
         </section>

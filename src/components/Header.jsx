@@ -11,11 +11,12 @@ const Header = ({ isAuthenticated, user }) => {
         else return false
     }
     return (
-        <header className={isAuthenticated && user.role === "admin" || isAuthenticated && user.role === "librarian" ? "hidden" : "lg:px-[50px] px-[25px] py-[16px] lg:h-[100px] h-[80px] fixed top-0 left-0  w-full"}>
-            <nav className="w-full h-full border-b border-zinc-200 pb-[8px] flex items-center justify-between bg-white">
+        <header className={isAuthenticated && user.role === "admin" || isAuthenticated && user.role === "librarian" ? "hidden" : "lg:px-[50px] bg-white px-[25px] lg:h-[85px] h-[80px] fixed top-0 left-0 w-full border-b border-zinc-300"}>
+
+            <nav className="w-full h-full flex items-center justify-between bg-white">
 
                 <div className="logo h-full flex items-center gap-[8px]">
-                    <img className="h-full" src={assets.logo} alt="" />
+                    <img className="w-[64px] h-[64px]" src={assets.logo} alt="" />
                     <h2 className="text-2xl font-clemente-regular">Resourcify</h2>
                 </div>
 

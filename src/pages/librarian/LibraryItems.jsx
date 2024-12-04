@@ -44,10 +44,6 @@ const LibraryItems = () => {
                             <td>{i.copyright}</td>
                             <td className='actions'>
                                 <button>
-                                    <IoEyeOutline />
-                                </button>
-
-                                <button>
                                     <FaRegEdit />
                                 </button>
                                 <button>
