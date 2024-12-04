@@ -1,6 +1,7 @@
 import Dashboard from "../pages/admin/Dashboard";
 import Login from "../pages/auth/Login";
 import Home from "../pages/landing/Home";
+import AddNewLibraryItem from "../pages/librarian/AddNewLibraryItem";
 import LibraryItems from "../pages/librarian/LibraryItems";
 
 export const routes = [
@@ -38,5 +39,11 @@ export const librarianRoutes = [
     path: "/librarian",
     title: "Library Items",
     element: LibraryItems,
+  },
+
+  {
+    path: "/librarian/add",
+    title: "Add Library Items",
+    element: AddNewLibraryItem,
   },
 ];

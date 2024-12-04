@@ -59,6 +59,9 @@
 
 /* Fonts Initialization */
 
+body {
+  font-family: gilroy_medium;
+}
 section {
   @apply p-[25px] lg:p-[50px]  pt-[112px] lg:pt-[132px];
 }
@@ -75,6 +78,24 @@ input {
   @apply w-full p-2.5 bg-transparent border border-zinc-400 rounded-md font-gilroy-medium text-black outline-none;
 }
 
+table {
+  @apply w-full bg-white rounded-lg border-collapse;
+
+  tr {
+    @apply border-b border-zinc-300;
+  }
+
+  th,
+  td {
+    @apply p-3 text-left;
+  }
+  th {
+    @apply text-black;
+  }
+  td {
+    @apply text-zinc-700;
+  }
+}
 /* Custom Classes */
 .primary-btn {
   @apply bg-accent text-white font-gilroy-medium lg:w-[150px] w-[120px] text-center p-2.5 rounded-md hover:bg-accentHover hover:ease-in hover:duration-200;
@@ -86,4 +107,8 @@ input {
 
 .input-label {
   @apply font-gilroy-medium text-zinc-600 inline-block;
+}
+
+.actions{
+  @apply flex gap-[8px]
 }

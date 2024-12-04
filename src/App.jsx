@@ -11,10 +11,12 @@ import Login from "./pages/auth/Login"
 import ProtectedRoute from "./components/ProtectedRoute"
 import Loading from "./pages/other/Loading"
 import toast, { Toaster } from "react-hot-toast"
+import { sLibrarianRoutes } from "./routes/sidebarRoute"
 
 const App = () => {
   const dispatch = useDispatch()
   const { isAuthenticated, user, loading, error, message } = useSelector(state => state.user)
+  const { loading: libraryLoading, error: libraryError, message: libraryMessage } = useSelector(state => state.library)
 
   useEffect(() => {
     dispatch(loadUser())
@@ -31,6 +33,8 @@ const App = () => {
       dispatch({ type: "clearError" })
     }
   }, [error, message])
+
+
 
   return (
     loading ? <Loading /> : <Router>
@@ -59,7 +63,7 @@ const App = () => {
         {librarianRoutes.map((r, index) => (
           <Route key={index} path={r.path} element={
             <ProtectedRoute isAuthenticated={isAuthenticated} redirect="/login">
-              <Sidebar component={r.element} routes={librarianRoutes} />
+              <Sidebar component={r.element} routes={sLibrarianRoutes} />
             </ProtectedRoute>} />
         ))}
 

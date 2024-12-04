@@ -10,8 +10,6 @@ const Header = ({ isAuthenticated, user }) => {
         }
         else return false
     }
-
-
     return (
         <header className={isAuthenticated && user.role === "admin" || isAuthenticated && user.role === "librarian" ? "hidden" : "lg:px-[50px] px-[25px] py-[16px] lg:h-[100px] h-[80px] fixed top-0 left-0  w-full"}>
             <nav className="w-full h-full border-b border-zinc-200 pb-[8px] flex items-center justify-between bg-white">
