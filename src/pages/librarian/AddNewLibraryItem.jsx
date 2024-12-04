@@ -1,12 +1,15 @@
 import Select from 'react-select'
 import { styles } from '../../utils/selectStyles'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { createLibraryItem } from '../../redux/actions/library'
 import { libraryItemCategories } from '../../utils/selectOptions'
+import Loading from '../other/Loading'
+import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 const AddNewLibraryItem = () => {
-
+    const { loading, error, message } = useSelector(state => state.library)
     const [title, setTitle] = useState("")
     const [subtitle, setSubTitle] = useState("")
     const [category, setCategory] = useState("")
@@ -46,9 +49,22 @@ const AddNewLibraryItem = () => {
 
         dispatch(createLibraryItem(myForm))
     }
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (message) {
+            toast.success(message)
+            dispatch({ type: "clearMessage" })
+            navigate("/librarian")
+        }
+
+        if (error) {
+            toast.error(error)
+            dispatch({ type: "clearError" })
+        }
+    }, [error, message])
 
     return (
-        <section className='!p-0'>
+        loading ? <Loading /> : <section className='!p-0'>
             <form onSubmit={submitHandler} action="" className='bg-white p-[16px] rounded-lg flex flex-col gap-[4px]'>
                 <h2 className='text-2xl font-clemente-regular'>Add New Library Item</h2>
                 <label htmlFor="">
