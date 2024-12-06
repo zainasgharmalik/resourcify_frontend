@@ -4,7 +4,7 @@ import { getLabResources } from "../../redux/actions/lab";
 
 const LabResources = () => {
   const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.library);
+  const { items } = useSelector((state) => state.lab);
   useEffect(() => {
     dispatch(getLabResources());
   }, [items]);
@@ -23,24 +23,23 @@ const LabResources = () => {
             <th>Publisher</th>
             <th>Size</th>
           </tr>
-
-          <tbody>
-            {items &&
-              items.length > 0 &&
-              items.map((i, index) => (
-                <tr>
-                  <td>{index + 1}</td>
-                  <td>{i.title}</td>
-                  <td>{i.version}</td>
-                  <td>{i.link}</td>
-                  <td></td>
-                  <td>{i.os}</td>
-                  <td>{i.publisher}</td>
-                  <td>{i.size}</td>
-                </tr>
-              ))}
-          </tbody>
         </thead>
+        <tbody>
+          {items &&
+            items.length > 0 &&
+            items.map((i, index) => (
+              <tr>
+                <td>{index + 1}</td>
+                <td>{i.title}</td>
+                <td>{i.version}</td>
+                <td>{i.link}</td>
+                <td></td>
+                <td>{i.os}</td>
+                <td>{i.publisher}</td>
+                <td>{i.size}</td>
+              </tr>
+            ))}
+        </tbody>
       </table>
     </section>
   );

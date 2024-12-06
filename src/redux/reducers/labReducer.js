@@ -23,7 +23,7 @@ export const labReducer = createReducer(
 
     getLabResourcesSuccess: (state, action) => {
       state.loading = false;
-      state.items = action.payload.libraryItems;
+      state.items = action.payload.labResources;
     },
 
     getLabResourcesFail: (state, action) => {
