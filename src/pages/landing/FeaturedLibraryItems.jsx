@@ -10,17 +10,19 @@ const FeaturedLibraryItems = () => {
         dispatch(getAllLibraryItems())
     }, [])
     return (
-        <section className="sec-section w-full flex flex-col">
-            <div className="row flex justify-between items-center">
+        <section className="flex flex-col w-full sec-section">
+            <div className="flex items-center justify-between row">
                 <h2>Library Items</h2>
             </div>
 
-            <div className="w-full grid grid-cols-5 mt-[16px] gap-[16px]">
+            <div className="w-full grid grid-cols-4 mt-[16px] gap-[16px]">
                 {items && items.length > 0 && items.map((i, index) =>
                     <LibraryItem key={index} image={i.file.url} title={i.title} status={i.status} description={i.subtitle} id={i._id} />
                     
                 )}
-            </div>
+            </div> 
+
+            
         </section>
     )
 }

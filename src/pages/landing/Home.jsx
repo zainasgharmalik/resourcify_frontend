@@ -2,11 +2,12 @@ import { Link } from "react-router-dom"
 import { assets } from "../../assets"
 import Facilities from "./Facilities"
 import FeaturedLibraryItems from "./FeaturedLibraryItems"
+import FeaturedLabResources from "./FeaturedLabResources"
 
 const Home = () => {
     return (
         <>
-            <section className="w-full h-screen flex flex-col ">
+            <section className="flex flex-col w-full h-screen ">
                 <div className="text-container flex flex-col gap-[16px] items-center">
                     <div>
                         <h1>Streamline Your Library and Lab <br /> Experience with Resourcify</h1>
@@ -29,6 +30,7 @@ const Home = () => {
 
             <Facilities />
             <FeaturedLibraryItems />
+            <FeaturedLabResources />
         </>
     )
 }
