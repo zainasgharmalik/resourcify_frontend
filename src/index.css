@@ -78,7 +78,7 @@ p {
   @apply text-zinc-600 font-gilroy-medium lg:text-lg;
 }
 
-input {
+input, textarea {
   @apply w-full p-2.5 bg-transparent border border-zinc-400 rounded-md font-gilroy-medium text-black outline-none;
 }
 

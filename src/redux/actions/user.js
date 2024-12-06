@@ -1,13 +1,13 @@
 import axios from "axios";
 import { server } from "../store";
 
-export const login = (rollNo, password) => async (dispatch) => {
+export const login = (identifier, password) => async (dispatch) => {
   dispatch({ type: "loginRequest" });
 
   try {
     const { data } = await axios.post(
       `${server}/login`,
-      { rollNo, password },
+      { identifier, password },
       {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,

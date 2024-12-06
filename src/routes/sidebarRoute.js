@@ -29,3 +29,23 @@ export const sLibrarianRoutes = [
     ],
   },
 ];
+
+export const sLabAttendantRoutes = [
+  {
+    label: "Lab Resources",
+    icon: RiDashboardLine,
+    isExtendAble: true,
+    subRoutes: [
+      {
+        label: "View All",
+        value: "/lab_attendant",
+        icon: RiDashboardLine,
+      },
+      {
+        label: "Add New Resource",
+        value: "/lab_attendant/add",
+        icon: RiDashboardLine,
+      },
+    ],
+  },
+];
