@@ -78,7 +78,8 @@ p {
   @apply text-zinc-600 font-gilroy-medium lg:text-lg;
 }
 
-input, textarea {
+input,
+textarea {
   @apply w-full p-2.5 bg-transparent border border-zinc-400 rounded-md font-gilroy-medium text-black outline-none;
 }
 
@@ -100,6 +101,21 @@ table {
     @apply text-zinc-700;
   }
 }
+
+form {
+  @apply bg-white p-[16px] rounded-lg flex flex-col gap-[4px];
+
+  label {
+    span {
+      @apply inline-block mb-[4px];
+    }
+
+    .submit-btn {
+      @apply mt-[8px];
+    }
+  }
+}
+
 /* Custom Classes */
 .primary-btn {
   @apply bg-accent text-white font-gilroy-medium lg:w-[150px] w-[120px] text-center p-2.5 rounded-md hover:bg-accentHover hover:ease-in hover:duration-200;
@@ -114,7 +130,7 @@ table {
 }
 
 .actions {
-  @apply flex gap-[8px] items-center justify-center;
+  @apply flex gap-[8px] items-start justify-start;
 }
 
 .sec-section {

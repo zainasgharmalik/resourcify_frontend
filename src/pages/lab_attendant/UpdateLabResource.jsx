@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createLabResource } from "../../redux/actions/lab";
+import {
+  createLabResource,
+  getLabResourceById,
+  updateLabResource,
+} from "../../redux/actions/lab";
 import Loading from "../other/Loading";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 
-const AddLabResoruce = () => {
+const UpdateLabResource = () => {
   const [title, setTitle] = useState("");
   const [version, setVersion] = useState("");
   const [link, setLink] = useState("");
@@ -16,6 +20,7 @@ const AddLabResoruce = () => {
   const [icon, setIcon] = useState("");
 
   const dispatch = useDispatch();
+  const { id } = useParams();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -23,16 +28,16 @@ const AddLabResoruce = () => {
     myForm.append("title", title);
     myForm.append("version", version);
     myForm.append("link", link);
-    myForm.append("instructions", instructions.split(","));
+    myForm.append("instructions", instructions);
     myForm.append("os", os);
     myForm.append("publisher", publisher);
     myForm.append("size", size);
     myForm.append("file", icon);
 
-    dispatch(createLabResource(myForm));
+    dispatch(updateLabResource(id, myForm));
   };
 
-  const { message, error, loading } = useSelector((state) => state.lab);
+  const { message, error, loading, item } = useSelector((state) => state.lab);
   const navigate = useNavigate();
 
   const changeImageHandler = (e) => {
@@ -56,6 +61,17 @@ const AddLabResoruce = () => {
       dispatch({ type: "clearError" });
     }
   }, [error, message]);
+
+  useEffect(() => {
+    dispatch(getLabResourceById(id));
+    setTitle(item.title);
+    setVersion(item.version);
+    setLink(item.link);
+    setInstructions(item.instructions);
+    setOS(item.os);
+    setPublisher(item.publisher);
+    setSize(item.size);
+  }, []);
 
   return loading ? (
     <Loading />
@@ -102,7 +118,7 @@ const AddLabResoruce = () => {
             name=""
             id=""
             placeholder="Enter Instructions"
-            className="resize-none"
+            className=""
             value={instructions}
             onChange={(e) => setInstructions(e.target.value)}
           ></textarea>
@@ -147,10 +163,10 @@ const AddLabResoruce = () => {
           />
         </label>
 
-        <button className="primary-btn !w-full mt-[8px]">Submit</button>
+        <button className="primary-btn !w-full mt-[4px]">Submit</button>
       </form>
     </section>
   );
 };
 
-export default AddLabResoruce;
+export default UpdateLabResource;

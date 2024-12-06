@@ -113,7 +113,7 @@ const App = () => {
                 isAuthenticated={isAuthenticated}
                 redirect="/login"
               >
-                <Sidebar component={r.element} routes={sLabAttendantRoutes} />
+                <Sidebar component={r.element} routes={sLabAttendantRoutes} title={r.title} />
               </ProtectedRoute>
             }
           />

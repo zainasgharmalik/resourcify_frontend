@@ -1,15 +1,33 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getLabResources } from "../../redux/actions/lab";
-
+import { deleteLabResource, getLabResources } from "../../redux/actions/lab";
+import { Link } from "react-router-dom";
+import { FaRegEdit } from "react-icons/fa";
+import { MdDeleteOutline } from "react-icons/md";
+import toast from "react-hot-toast";
+import { useAlert } from "../../utils/alert";
+import Loading from "../other/Loading";
 const LabResources = () => {
   const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.lab);
+  const alert = useAlert();
+  const { items, message, loading, error } = useSelector((state) => state.lab);
+
   useEffect(() => {
     dispatch(getLabResources());
-  }, [items]);
+  }, [error, message]);
 
-  return (
+  const deleteHandler = (e, id) => {
+    console.log(id);
+    dispatch(deleteLabResource(id));
+  };
+
+  useEffect(() => {
+    alert(message, error, "/lab_attendant");
+  }, [error, message]);
+
+  return loading ? (
+    <Loading />
+  ) : (
     <section className="!p-0">
       <table>
         <thead>
@@ -22,6 +40,7 @@ const LabResources = () => {
             <th>Tested OS</th>
             <th>Publisher</th>
             <th>Size</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -30,13 +49,36 @@ const LabResources = () => {
             items.map((i, index) => (
               <tr>
                 <td>{index + 1}</td>
-                <td>{i.title}</td>
+                <td>
+                  <div className="flex items-center gap-[8px] ">
+                    <img
+                      src={i.image.url}
+                      alt=""
+                      className="w-[36px] h-[36px] object-cover object-center"
+                    />
+                    <span>{i.title}</span>
+                  </div>
+                </td>
                 <td>{i.version}</td>
                 <td>{i.link}</td>
-                <td></td>
+                <td className="line-clamp-1">{i.instructions}</td>
                 <td>{i.os}</td>
                 <td>{i.publisher}</td>
                 <td>{i.size}</td>
+                <td>
+                  <div className="actions">
+                    <Link to={`/lab_attendant/resource/${i._id}/update`}>
+                      <FaRegEdit />
+                    </Link>
+
+                    <button
+                      disabled={loading}
+                      onClick={(e) => deleteHandler(e, i._id)}
+                    >
+                      <MdDeleteOutline />
+                    </button>
+                  </div>
+                </td>
               </tr>
             ))}
         </tbody>

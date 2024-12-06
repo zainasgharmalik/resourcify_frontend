@@ -2,6 +2,7 @@ import Dashboard from "../pages/admin/Dashboard";
 import Login from "../pages/auth/Login";
 import AddLabResoruce from "../pages/lab_attendant/AddLabResoruce";
 import LabResources from "../pages/lab_attendant/LabResources";
+import UpdateLabResource from "../pages/lab_attendant/UpdateLabResource";
 import Home from "../pages/landing/Home";
 import AddNewLibraryItem from "../pages/librarian/AddNewLibraryItem";
 import LibraryItems from "../pages/librarian/LibraryItems";
@@ -61,5 +62,12 @@ export const labAttendantRoutes = [
     path: "/lab_attendant/add",
     title: "Add Lab Resource",
     element: AddLabResoruce,
+  },
+
+
+  {
+    path: "/lab_attendant/resource/:id/update",
+    title: "Update Lab Resource",
+    element: UpdateLabResource,
   },
 ];
