@@ -31,22 +31,22 @@ const Login = () => {
       )}-${cleanValue.slice(7, 10)}`;
     }
   };
-
   const handleIdentifierChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.trim();
 
-    // Check if value matches roll number format
-    const isRollNo =
-      /^[a-z]{2}\d{2}-[a-z]{3}-\d{3}$/i.test(value) ||
-      value.replace(/[^a-z0-9]/gi, "").length <= 10;
+    const isEmail = value.includes("@") || value.includes(".");
 
-    if (isRollNo) {
-      setIdentifier(formatRollNo(value)); // Format as roll number
+    if (isEmail) {
+      setIdentifier(value);
     } else {
-      setIdentifier(value); // Keep as email
+      const cleanValue = value.replace(/[^a-z0-9]/gi, "").toLowerCase(); // Remove non-alphanumeric characters
+      if (cleanValue.length <= 10) {
+        setIdentifier(formatRollNo(cleanValue));
+      } else {
+        setIdentifier(cleanValue);
+      }
     }
   };
-
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(identifier, password)); // Dispatch unified identifier (rollNo or email)

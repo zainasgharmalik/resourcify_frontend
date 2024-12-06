@@ -3,6 +3,7 @@ import { assets } from "../../assets"
 import Facilities from "./Facilities"
 import FeaturedLibraryItems from "./FeaturedLibraryItems"
 import FeaturedLabResources from "./FeaturedLabResources"
+import FeaturedDiscussionRooms from "./FeaturedDiscussionRooms"
 
 const Home = () => {
     return (
@@ -31,6 +32,7 @@ const Home = () => {
             <Facilities />
             <FeaturedLibraryItems />
             <FeaturedLabResources />
+            <FeaturedDiscussionRooms />
         </>
     )
 }
