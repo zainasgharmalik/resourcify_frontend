@@ -72,7 +72,6 @@ const AddNewLibraryItem = () => {
         action=""
         className="bg-white p-[16px] rounded-lg flex flex-col gap-[4px]"
       >
-        <h2 className="text-2xl font-clemente-regular">Add New Library Item</h2>
         <label htmlFor="">
           <span className="inline-block mb-[4px]">Title</span>
           <input

@@ -13,8 +13,8 @@ const Header = ({ isAuthenticated, user }) => {
     <header
       className={
         (isAuthenticated && user.role === "admin") ||
-        (isAuthenticated && user.role === "librarian") ||
-        (isAuthenticated && user.role === "lab_attendant")
+          (isAuthenticated && user.role === "librarian") ||
+          (isAuthenticated && user.role === "lab_attendant")
           ? "hidden"
           : "lg:px-[50px] bg-white px-[25px] lg:h-[85px] h-[80px] fixed top-0 left-0 w-full border-b border-zinc-300"
       }
@@ -33,11 +33,10 @@ const Header = ({ isAuthenticated, user }) => {
             { path: "/discussion-rooms", label: "Discussion Rooms" },
           ].map((l, index) => (
             <Link
-              className={`text-md ${
-                isActive(l.path)
-                  ? "text-accent font-gilroy-semibold"
-                  : "text-text font-gilroy-medium"
-              } hover:text-black hover:duration-200 hover:ease-in`}
+              className={`text-md ${isActive(l.path)
+                ? "text-accent font-gilroy-semibold"
+                : "text-text font-gilroy-medium"
+                } hover:text-black hover:duration-200 hover:ease-in`}
               key={index}
               to={l.path}
             >
@@ -46,9 +45,12 @@ const Header = ({ isAuthenticated, user }) => {
           ))}
         </div>
 
-        <div className={isAuthenticated ? "hidden" : ""}>
-          <Link to={"/login"} className="inline-block primary-btn">
-            Login
+        <div className={isAuthenticated ? "hidden" : "flex gap-[8px] items-center"} >
+          <Link to={"/login"} className="inline-block primary-btn !w-auto">
+            Academia Login
+          </Link>
+          <Link to={"/login/coordinator"} className="inline-block primary-btn !w-auto !bg-black">
+            Coordinators Login
           </Link>
         </div>
 

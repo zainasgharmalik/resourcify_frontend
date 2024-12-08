@@ -12,6 +12,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Loading from "./pages/other/Loading";
 import toast, { Toaster } from "react-hot-toast";
 import { sLabAttendantRoutes, sLibrarianRoutes } from "./routes/sidebarRoute";
+import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
 
 const App = () => {
   const dispatch = useDispatch();
@@ -40,94 +41,101 @@ const App = () => {
     }
   }, [error, message]);
 
+  const lenis = useLenis(({ scroll }) => {
+    // called every scroll
+  })
+
   return loading ? (
     <Loading />
   ) : (
-    <Router>
-      <Header isAuthenticated={isAuthenticated} user={user} />
+    <ReactLenis root>
+      <Router>
+        <Header isAuthenticated={isAuthenticated} user={user} />
 
-      <Routes>
-        {routes.map((r, index) => (
-          <Route key={index} path={r.path} element={<r.element />} />
-        ))}
+        <Routes>
+          {routes.map((r, index) => (
+            <Route key={index} path={r.path} element={<r.element />} />
+          ))}
 
-        {authRoutes.map((r, index) => (
-          <Route
-            key={index}
-            path={r.path}
-            element={
-              <ProtectedRoute
-                isAuthenticated={!isAuthenticated}
-                redirect={
-                  user && user.role === "admin"
-                    ? "/admin"
-                    : user && user.role === "librarian"
-                    ? "/librarian"
-                    : user && user.role === "lab_attendant"
-                    ? "/lab_attendant"
-                    : "/"
-                }
-              >
-                <r.element />
-              </ProtectedRoute>
-            }
-          />
-        ))}
+          {authRoutes.map((r, index) => (
+            <Route
+              key={index}
+              path={r.path}
 
-        {adminRoutes.map((r, index) => (
-          <Route
-            key={index}
-            path={r.path}
-            element={
-              <ProtectedRoute
-                isAuthenticated={isAuthenticated}
-                redirect="/login"
-              >
-                <Sidebar component={r.element} routes={adminRoutes} />
-              </ProtectedRoute>
-            }
-          />
-        ))}
+              element={
+                <ProtectedRoute
+                  isAuthenticated={!isAuthenticated}
+                  redirect={
+                    user && user.role === "admin"
+                      ? "/admin"
+                      : user && user.role === "librarian"
+                        ? "/librarian"
+                        : user && user.role === "lab_attendant"
+                          ? "/lab_attendant"
+                          : "/"
+                  }
+                >
+                  <r.element title={r.title} />
+                </ProtectedRoute>
+              }
+            />
+          ))}
 
-        {librarianRoutes.map((r, index) => (
-          <Route
-            key={index}
-            path={r.path}
-            element={
-              <ProtectedRoute
-                isAuthenticated={isAuthenticated}
-                redirect="/login"
-              >
-                <Sidebar component={r.element} routes={sLibrarianRoutes} />
-              </ProtectedRoute>
-            }
-          />
-        ))}
+          {adminRoutes.map((r, index) => (
+            <Route
+              key={index}
+              path={r.path}
+              element={
+                <ProtectedRoute
+                  isAuthenticated={isAuthenticated}
+                  redirect="/login"
+                >
+                  <Sidebar component={r.element} routes={adminRoutes} />
+                </ProtectedRoute>
+              }
+            />
+          ))}
 
-        {labAttendantRoutes.map((r, index) => (
-          <Route
-            key={index}
-            path={r.path}
-            element={
-              <ProtectedRoute
-                isAuthenticated={isAuthenticated}
-                redirect="/login"
-              >
-                <Sidebar component={r.element} routes={sLabAttendantRoutes} title={r.title} />
-              </ProtectedRoute>
-            }
-          />
-        ))}
-      </Routes>
+          {librarianRoutes.map((r, index) => (
+            <Route
+              key={index}
+              path={r.path}
+              element={
+                <ProtectedRoute
+                  isAuthenticated={isAuthenticated}
+                  redirect="/login"
+                >
+                  <Sidebar component={r.element} routes={sLibrarianRoutes} title={r.title} />
+                </ProtectedRoute>
+              }
+            />
+          ))}
 
-      <Toaster
-        toastOptions={{
-          style: {
-            fontFamily: "gilroy_medium",
-          },
-        }}
-      />
-    </Router>
+          {labAttendantRoutes.map((r, index) => (
+            <Route
+              key={index}
+              path={r.path}
+              element={
+                <ProtectedRoute
+                  isAuthenticated={isAuthenticated}
+                  redirect="/login"
+                >
+                  <Sidebar component={r.element} routes={sLabAttendantRoutes} title={r.title} />
+                </ProtectedRoute>
+              }
+            />
+          ))}
+        </Routes>
+
+        <Toaster
+          toastOptions={{
+            style: {
+              fontFamily: "gilroy_medium",
+            },
+          }}
+        />
+      </Router>
+    </ReactLenis>
   );
 };
 

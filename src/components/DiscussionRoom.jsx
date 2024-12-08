@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const DiscussionRoom = ({ title, image, status, id }) => {
   return (
     <Link>
-      <div className="w-full h-[450px] rounded-lg overflow-hidden relative group">
+      <div className="w-full h-[350px] rounded-lg overflow-hidden relative group">
         {/* Image */}
         <img
           src={image}

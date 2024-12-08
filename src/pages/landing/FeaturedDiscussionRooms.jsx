@@ -11,6 +11,11 @@ const FeaturedDiscussionRooms = () => {
 
       <div className="w-full grid grid-cols-4 xl:grid-cols-6 mt-[16px] gap-[16px]">
         <DiscussionRoom image={assets.discussion_room_home} title={"Room Title"}/>
+        <DiscussionRoom image={assets.discussion_room_home} title={"Room Title"}/>
+        <DiscussionRoom image={assets.discussion_room_home} title={"Room Title"}/>
+        <DiscussionRoom image={assets.discussion_room_home} title={"Room Title"}/>
+        <DiscussionRoom image={assets.discussion_room_home} title={"Room Title"}/>
+        <DiscussionRoom image={assets.discussion_room_home} title={"Room Title"}/>
       </div>
     </section>
   );

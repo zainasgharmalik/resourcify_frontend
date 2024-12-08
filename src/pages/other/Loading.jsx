@@ -1,10 +1,11 @@
-
+import Lottie from "lottie-react";
+import loading from "../../assets/loading.json"
 const Loading = () => {
     return (
-        <section className='w-full h-screen bg-accent flex justify-center items-center fixed top-0 left-0 z-20'>
-            <h1 className='text-white'>Loading</h1>
+        <section className="w-full h-screen bg-accent flex justify-center items-center fixed top-0 left-0 z-20">
+            <Lottie animationData={loading} loop={true} />
         </section>
-    )
-}
+    );
+};
 
-export default Loading
+export default Loading;

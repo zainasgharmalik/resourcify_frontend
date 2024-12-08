@@ -63,7 +63,7 @@ body {
   font-family: gilroy_medium;
 }
 section {
-  @apply p-[25px] lg:p-[50px]  pt-[112px] lg:pt-[132px];
+  @apply p-[25px] lg:p-[50px]  pt-[112px] lg:pt-[117px];
 }
 
 h1 {

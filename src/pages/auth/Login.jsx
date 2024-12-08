@@ -5,7 +5,7 @@ import { login } from "../../redux/actions/user";
 import { useState } from "react";
 
 const Login = () => {
-  const [identifier, setIdentifier] = useState(""); // Unified field for rollNo or email
+  const [rollNo, setRollNo] = useState(""); // Field for roll number
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
@@ -31,25 +31,16 @@ const Login = () => {
       )}-${cleanValue.slice(7, 10)}`;
     }
   };
-  const handleIdentifierChange = (e) => {
+
+  const handleRollNoChange = (e) => {
     const value = e.target.value.trim();
-
-    const isEmail = value.includes("@") || value.includes(".");
-
-    if (isEmail) {
-      setIdentifier(value);
-    } else {
-      const cleanValue = value.replace(/[^a-z0-9]/gi, "").toLowerCase(); // Remove non-alphanumeric characters
-      if (cleanValue.length <= 10) {
-        setIdentifier(formatRollNo(cleanValue));
-      } else {
-        setIdentifier(cleanValue);
-      }
-    }
+    const cleanValue = value.replace(/[^a-z0-9]/gi, "").toLowerCase(); // Remove non-alphanumeric characters
+    setRollNo(formatRollNo(cleanValue));
   };
+
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(login(identifier, password)); // Dispatch unified identifier (rollNo or email)
+    dispatch(login(rollNo, password)); // Dispatch roll number and password
   };
 
   return (
@@ -63,20 +54,19 @@ const Login = () => {
             <div>
               <h2 className="text-4xl font-clemente-regular">SignIn</h2>
               <p className="text-left !text-[16px]">
-                Enter Your Roll Number (Students) or Email (Others) and Password
-                to Login
+                Enter Your Roll Number and Password to Login
               </p>
             </div>
 
             <label>
-              <span className="input-label mb-[4px]">Roll No / Email</span>
+              <span className="input-label mb-[4px]">Roll Number</span>
               <input
-                value={identifier}
-                onChange={handleIdentifierChange}
+                value={rollNo}
+                onChange={handleRollNoChange}
                 className=""
                 type="text"
-                placeholder="Enter Your Roll Number or Email"
-                maxLength={50} // Increase length to accommodate email addresses
+                placeholder="Enter Your Roll Number"
+                maxLength={12} // Maximum length for formatted roll number
               />
             </label>
 
@@ -90,14 +80,17 @@ const Login = () => {
               />
             </label>
 
-            <Link className="text-right font-gilroy-medium text-text">
+            <Link to={`/forgotpassword`} className="text-right font-gilroy-medium text-text">
               Forgot Password?
             </Link>
             <button className="primary-btn !w-full">Login</button>
-            <p className="!text-[16px]">
+            <p className="!text-[16px] text-center">
               New Here?{" "}
-              <Link className="text-accent font-[600]">Create Account</Link>
+              <Link to={`/register`} className="text-accent font-[600]">Create Account</Link>
             </p>
+
+            <hr />
+            <Link to={'/login/teacher'} className="primary-btn !w-full !bg-black mt-[4px]">Teacher Login</Link>
           </form>
         </div>
         <div className="image-col w-[70%] h-full">

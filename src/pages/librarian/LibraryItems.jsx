@@ -1,17 +1,31 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllLibraryItems } from '../../redux/actions/library';
+import { deleteLibraryItem, getAllLibraryItems } from '../../redux/actions/library';
 import { IoEyeOutline } from "react-icons/io5";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
+import { Link } from 'react-router-dom';
+import Loading from '../other/Loading';
+import { useAlert } from '../../utils/alert';
 const LibraryItems = () => {
+    const alert = useAlert()
+    const { loading, error, message } = useSelector(state => state.library)
     const dispatch = useDispatch();
     const { items } = useSelector(state => state.library)
     useEffect(() => {
         dispatch(getAllLibraryItems())
-    }, [items])
+    }, [message])
+
+    const deleteHandler = (e, id) => {
+        e.preventDefault()
+        dispatch(deleteLibraryItem(id))
+    }
+
+    useEffect(() => {
+        alert(message, error, "/librarian")
+    }, [error, message])
     return (
-        <section className='w-full !p-0'>
+        loading ? <Loading /> : <section className='w-full !p-0'>
             <table>
                 <thead>
                     <tr>
@@ -42,13 +56,14 @@ const LibraryItems = () => {
                             <td>{i.isbn}</td>
                             <td>{i.publisherCode}</td>
                             <td>{i.copyright}</td>
-                            <td className='actions'>
-                                <button>
-                                    <FaRegEdit />
-                                </button>
-                                <button>
-                                    <MdDeleteOutline />
-                                </button>
+                            <td >
+                                <div className='actions'>
+                                    <Link to={`/librarian/item/${i._id}/update`}><FaRegEdit />
+                                    </Link>
+                                    <button onClick={(e) => deleteHandler(e, i._id)}>
+                                        <MdDeleteOutline />
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     ))}

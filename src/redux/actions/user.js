@@ -21,14 +21,13 @@ export const login = (identifier, password) => async (dispatch) => {
 };
 
 export const register =
-  (name, email, role, password, country, timezone, phoneNumber) =>
-  async (dispatch) => {
+  (name, rollNo, password, email, gender, role) => async (dispatch) => {
     dispatch({ type: "registerRequest" });
 
     try {
       const { data } = await axios.post(
         `${server}/register`,
-        { name, email, role, password, country, timezone, phoneNumber },
+        { name, rollNo, password, email, gender, role },
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  createLabResource,
   getLabResourceById,
   updateLabResource,
 } from "../../redux/actions/lab";
@@ -10,43 +9,53 @@ import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const UpdateLabResource = () => {
-  const [title, setTitle] = useState("");
-  const [version, setVersion] = useState("");
-  const [link, setLink] = useState("");
-  const [instructions, setInstructions] = useState("");
-  const [os, setOS] = useState("");
-  const [publisher, setPublisher] = useState("");
-  const [size, setSize] = useState("");
-  const [icon, setIcon] = useState("");
+  const [formData, setFormData] = useState({
+    title: "",
+    version: "",
+    link: "",
+    instructions: "",
+    os: "",
+    publisher: "",
+    size: "",
+    icon: null,
+  });
 
   const dispatch = useDispatch();
   const { id } = useParams();
+  const navigate = useNavigate();
+
+  const { message, error, loading, item } = useSelector((state) => state.lab);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setFormData((prev) => ({ ...prev, icon: file }));
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const myForm = new FormData();
-    myForm.append("title", title);
-    myForm.append("version", version);
-    myForm.append("link", link);
-    myForm.append("instructions", instructions);
-    myForm.append("os", os);
-    myForm.append("publisher", publisher);
-    myForm.append("size", size);
-    myForm.append("file", icon);
+    if (
+      !formData.title ||
+      !formData.version ||
+      !formData.link ||
+      !formData.os ||
+      !formData.publisher ||
+      !formData.size
+    ) {
+      toast.error("Please fill all required fields!");
+      return;
+    }
 
-    dispatch(updateLabResource(id, myForm));
-  };
+    const updatedData = new FormData();
+    Object.keys(formData).forEach((key) => {
+      updatedData.append(key, formData[key]);
+    });
 
-  const { message, error, loading, item } = useSelector((state) => state.lab);
-  const navigate = useNavigate();
-
-  const changeImageHandler = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setIcon(file);
-    };
+    dispatch(updateLabResource(id, updatedData));
   };
 
   useEffect(() => {
@@ -55,115 +64,137 @@ const UpdateLabResource = () => {
       dispatch({ type: "clearMessage" });
       navigate("/lab_attendant");
     }
-
     if (error) {
       toast.error(error);
       dispatch({ type: "clearError" });
     }
-  }, [error, message]);
+  }, [message, error, dispatch, navigate]);
 
   useEffect(() => {
-    dispatch(getLabResourceById(id));
-    setTitle(item.title);
-    setVersion(item.version);
-    setLink(item.link);
-    setInstructions(item.instructions);
-    setOS(item.os);
-    setPublisher(item.publisher);
-    setSize(item.size);
-  }, []);
+    if (id) {
+      dispatch(getLabResourceById(id));
+    }
+  }, [id, dispatch]);
+
+  useEffect(() => {
+    if (item) {
+      setFormData({
+        title: item.title || "",
+        version: item.version || "",
+        link: item.link || "",
+        instructions: item.instructions || "",
+        os: item.os || "",
+        publisher: item.publisher || "",
+        size: item.size || "",
+        icon: null,
+      });
+    }
+  }, [item]);
 
   return loading ? (
     <Loading />
   ) : (
     <section className="!p-0">
       <form
-        action=""
-        className="bg-white p-[16px] rounded-lg flex flex-col gap-[4px]"
+        className="bg-white rounded-lg flex flex-col gap-4 shadow-lg"
         onSubmit={submitHandler}
       >
-        <label htmlFor="">
+
+        <label>
           <span>Title</span>
           <input
             type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
             placeholder="Enter Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            className="input-field"
           />
         </label>
 
-        <label htmlFor="">
+        <label>
           <span>Version</span>
           <input
             type="text"
+            name="version"
+            value={formData.version}
+            onChange={handleChange}
             placeholder="Enter Version"
-            value={version}
-            onChange={(e) => setVersion(e.target.value)}
+            className="input-field"
           />
         </label>
 
-        <label htmlFor="">
+        <label>
           <span>Link</span>
           <input
             type="text"
+            name="link"
+            value={formData.link}
+            onChange={handleChange}
             placeholder="Enter Link"
-            value={link}
-            onChange={(e) => setLink(e.target.value)}
+            className="input-field"
           />
         </label>
 
-        <label htmlFor="">
-          <span>Installation ( , separator)</span>
+        <label>
+          <span>Instructions (comma-separated)</span>
           <textarea
-            name=""
-            id=""
+            name="instructions"
+            value={formData.instructions}
+            onChange={handleChange}
             placeholder="Enter Instructions"
-            className=""
-            value={instructions}
-            onChange={(e) => setInstructions(e.target.value)}
-          ></textarea>
+            className="input-field"
+          />
         </label>
 
-        <label htmlFor="">
-          <span>Tested Os</span>
+        <label>
+          <span>Tested OS</span>
           <input
             type="text"
-            placeholder="Enter Os"
-            value={os}
-            onChange={(e) => setOS(e.target.value)}
+            name="os"
+            value={formData.os}
+            onChange={handleChange}
+            placeholder="Enter OS"
+            className="input-field"
           />
         </label>
 
-        <label htmlFor="">
+        <label>
           <span>Publisher</span>
           <input
             type="text"
+            name="publisher"
+            value={formData.publisher}
+            onChange={handleChange}
             placeholder="Enter Publisher"
-            value={publisher}
-            onChange={(e) => setPublisher(e.target.value)}
+            className="input-field"
           />
         </label>
 
-        <label htmlFor="">
+        <label>
           <span>Size</span>
           <input
             type="text"
+            name="size"
+            value={formData.size}
+            onChange={handleChange}
             placeholder="Enter Size"
-            value={size}
-            onChange={(e) => setSize(e.target.value)}
+            className="input-field"
           />
         </label>
 
-        <label htmlFor="">
+        <label>
           <span>Icon</span>
           <input
             type="file"
-            placeholder="Enter Size"
-            onChange={changeImageHandler}
+            onChange={handleFileChange}
+            className="input-field"
           />
         </label>
 
-        <button className="primary-btn !w-full mt-[4px]">Submit</button>
+        <button type="submit" className="primary-btn">
+          Submit
+        </button>
       </form>
     </section>
   );
