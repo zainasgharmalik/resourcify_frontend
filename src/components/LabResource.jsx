@@ -27,7 +27,7 @@ const LabResource = ({ image, title, status, description, id }) => {
       </p>
       <Link
         className="primary-btn !w-full transition-transform duration-300 hover:scale-105"
-        to={`/library/${id}/lend`}
+        to={`/lab-resource/${id}/request`}
       >
         Request Now
       </Link>

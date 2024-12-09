@@ -17,7 +17,7 @@ const DiscussionRoom = ({ title, image, status, id }) => {
         <div className="absolute hidden group-hover:flex top-0 left-0 w-full h-full bg-gradient-to-b from-[#ffffff18] to-[#000000e5] overlay p-[16px] flex-col justify-end transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100">
           <div className="flex items-center justify-between">
             <p className="text-3xl text-white font-clemente-regular">{title}</p>
-            <Link>
+            <Link to={`/discussion-room/${id}/book`}>
               <GoArrowUpRight className="text-3xl text-white" />
             </Link>
           </div>

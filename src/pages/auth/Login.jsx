@@ -44,7 +44,7 @@ const Login = () => {
   };
 
   return (
-    <section className="w-full h-screen">
+    <section className="w-full min-h-screen">
       <div className="row w-full h-full flex justify-between items-center gap-[64px]">
         <div className="form-col w-[30%] h-full flex items-center">
           <form
@@ -96,7 +96,7 @@ const Login = () => {
         <div className="image-col w-[70%] h-full">
           <img
             className="w-full h-full rounded-lg"
-            src={assets.comsats_wah}
+            src={assets.comsats_wah_2}
             alt=""
           />
         </div>

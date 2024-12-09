@@ -60,14 +60,14 @@ const TeacherLogin = ({title}) => {
                         <button className="primary-btn !w-full">Login</button>
                         <p className="!text-[16px] text-center">
                             New Here?{" "}
-                            <Link className="text-accent font-[600]">Create Account</Link>
+                            <Link className="text-accent font-[600]" to={'/register'}>Create Account</Link>
                         </p>
                     </form>
                 </div>
                 <div className="image-col w-[70%] h-full">
                     <img
                         className="w-full h-full rounded-lg"
-                        src={assets.comsats_wah}
+                        src={assets.comsats_wah_2}
                         alt=""
                     />
                 </div>

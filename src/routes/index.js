@@ -1,3 +1,6 @@
+import DiscussionRoomBooking from "../pages/academia/DiscussionRoomBooking";
+import LabResourceBooking from "../pages/academia/LabResourceBooking";
+import LibraryItemBooking from "../pages/academia/LibraryItemBooking";
 import Dashboard from "../pages/admin/Dashboard";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import Login from "../pages/auth/Login";
@@ -28,8 +31,20 @@ export const routes = [
 
   {
     title: "Library",
+    path: "/library/:id/lend",
+    element: LibraryItemBooking,
+  },
+
+  {
+    title: "Library",
     path: "/lab-resources",
     element: LabResourcesListing,
+  },
+
+  {
+    title: "Library",
+    path: "/lab-resource/:id/request",
+    element: LabResourceBooking,
   },
 
   
@@ -37,6 +52,12 @@ export const routes = [
     title: "Discussion Rooms",
     path: "/discussion-rooms",
     element: RoomsListing,
+  },
+
+  {
+    title: "Discussion Rooms",
+    path: "/discussion-room/:id/book",
+    element: DiscussionRoomBooking,
   },
 ];
 

@@ -53,7 +53,7 @@ const ForgotPassword = () => {
                 <div className="image-col w-[70%] h-full">
                     <img
                         className="w-full h-full rounded-lg"
-                        src={assets.comsats_wah}
+                        src={assets.comsats_wah_2}
                         alt=""
                     />
                 </div>
