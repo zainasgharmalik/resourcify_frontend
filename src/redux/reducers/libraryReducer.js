@@ -72,6 +72,45 @@ export const libraryReducer = createReducer(
       state.error = action.payload;
     },
 
+    createLendItemRequestRequest: (state) => {
+      state.loading = true;
+    },
+
+    createLendItemRequestSuccess: (state, action) => {
+      state.loading = false;
+      state.message = action.payload.message;
+    },
+
+    createLendItemRequestFail: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    getAllLendItemsRequestsRequest: (state) => {
+      state.loading = true;
+    },
+    getAllLendItemsRequestsSuccess: (state, action) => {
+      state.loading = false;
+      state.lentItems = action.payload.items;
+    },
+    getAllLendItemsRequestsFail: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    changeLendItemRequestStatusRequest: (state) => {
+      state.loading = true;
+    },
+
+    changeLendItemRequestStatusSuccess: (state, action) => {
+      state.loading = false;
+      state.message = action.payload.message;
+    },
+
+    changeLendItemRequestStatusFail: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
     clearError: (state) => {
       state.error = null;
     },

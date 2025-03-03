@@ -111,3 +111,67 @@ export const deleteLibraryItem = (id) => async (dispatch) => {
     });
   }
 };
+
+export const getAllLendItemsRequests = () => async (dispatch) => {
+  dispatch({ type: "getAllLendItemsRequestsRequest" });
+
+  try {
+    const { data } = await axios.get(
+      `${server}/lend-library-items`,
+
+      {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      }
+    );
+
+    dispatch({ type: "getAllLendItemsRequestsSuccess", payload: data });
+  } catch (error) {
+    dispatch({
+      type: "getAllLendItemsRequestsFail",
+      payload: error.response.data.message,
+    });
+  }
+};
+
+export const createLendItemsRequest =
+  (item, startDate, endDate) => async (dispatch) => {
+    dispatch({ type: "createLendItemRequestRequest" });
+    try {
+      const { data } = await axios.post(
+        `${server}/lend-library-item`,
+        { item, startDate, endDate },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      dispatch({ type: "createLendItemRequestSuccess", payload: data });
+    } catch (error) {
+      dispatch({
+        type: "createLendItemRequestFail",
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+export const changeLendItemsRequestStatus =
+  (id, status) => async (dispatch) => {
+    dispatch({ type: "changeLendItemRequestStatusRequest" });
+    try {
+      let { data } = await axios.put(
+        `${server}/lend-library-item/${id}`,
+        { status },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      dispatch({ type: "changeLendItemRequestStatusSuccess", payload: data });
+    } catch (error) {
+      dispatch({
+        type: "changeLendItemRequestStatusFail",
+        payload: error.response.data.message,
+      });
+    }
+  };

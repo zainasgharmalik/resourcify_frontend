@@ -7,6 +7,7 @@ import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import TeacherLogin from "../pages/auth/TeacherLogin";
 import AddLabResoruce from "../pages/lab_attendant/AddLabResoruce";
+import AllLabResourcesRequests from "../pages/lab_attendant/AllLabResourcesRequests";
 import LabResources from "../pages/lab_attendant/LabResources";
 import UpdateLabResource from "../pages/lab_attendant/UpdateLabResource";
 import Home from "../pages/landing/Home";
@@ -14,6 +15,7 @@ import LabResourcesListing from "../pages/landing/LabResourcesListing";
 import LibraryListing from "../pages/landing/LibraryListing";
 import RoomsListing from "../pages/landing/RoomsListing";
 import AddNewLibraryItem from "../pages/librarian/AddNewLibraryItem";
+import AllLentItemsRequests from "../pages/librarian/AllLentItemsRequests";
 import LibraryItems from "../pages/librarian/LibraryItems";
 import UpdateLibraryItem from "../pages/librarian/UpdateLibraryItem";
 
@@ -47,7 +49,6 @@ export const routes = [
     element: LabResourceBooking,
   },
 
-  
   {
     title: "Discussion Rooms",
     path: "/discussion-rooms",
@@ -86,7 +87,6 @@ export const authRoutes = [
     element: Register,
   },
 
-  
   {
     title: "Forgot Password",
     path: "/forgotpassword",
@@ -126,6 +126,12 @@ export const librarianRoutes = [
     title: "Update Library Item",
     element: UpdateLibraryItem,
   },
+
+  {
+    path: "/librarian/requests",
+    title: "Requests",
+    element: AllLentItemsRequests,
+  },
 ];
 
 export const labAttendantRoutes = [
@@ -139,6 +145,12 @@ export const labAttendantRoutes = [
     path: "/lab_attendant/add",
     title: "Add Lab Resource",
     element: AddLabResoruce,
+  },
+
+  {
+    path: "/lab_attendant/requests",
+    title: "Lab Resources Requests",
+    element: AllLabResourcesRequests,
   },
 
   {

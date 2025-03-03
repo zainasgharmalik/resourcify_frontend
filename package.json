@@ -20,6 +20,7 @@
     "@studio-freight/react-lenis": "^0.0.47",
     "axios": "^1.7.8",
     "lottie-react": "^2.4.0",
+    "moment-timezone": "^0.5.47",
     "protected-route-react": "^1.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

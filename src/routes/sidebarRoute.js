@@ -26,6 +26,12 @@ export const sLibrarianRoutes = [
         value: "/librarian/add",
         icon: RiDashboardLine,
       },
+
+      {
+        value: "/librarian/requests",
+        label: "Requests",
+        icon: RiDashboardLine,
+      },
     ],
   },
 ];
@@ -44,6 +50,12 @@ export const sLabAttendantRoutes = [
       {
         label: "Add New Resource",
         value: "/lab_attendant/add",
+        icon: RiDashboardLine,
+      },
+
+      {
+        label: "Requests",
+        value: "/lab_attendant/requests",
         icon: RiDashboardLine,
       },
     ],

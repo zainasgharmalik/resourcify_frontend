@@ -98,3 +98,64 @@ export const deleteLabResource = (id) => async (dispatch) => {
     });
   }
 };
+
+export const createLendLabResourceRequest =
+  (item, purpose) => async (dispatch) => {
+    dispatch({ type: "createLendLabResourceRequest" });
+    try {
+      let { data } = await axios.post(
+        `${server}/lend-lab-resource`,
+        { item, purpose },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      dispatch({ type: "createLendLabResourceRequestSuccess", payload: data });
+    } catch (error) {
+      dispatch({
+        type: "createLendLabResourceRequestFail",
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+export const changeLendLabResourceRequestStatus =
+  (id, status) => async (dispatch) => {
+    dispatch({ type: "changeLendLabResourceRequestStatusRequest" });
+    try {
+      let { data } = await axios.put(
+        `${server}/lend-lab-resource/${id}`,
+        { status },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      dispatch({
+        type: "changeLendLabResourceRequestStatusSuccess",
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "changeLendLabResourceRequestStatusFail",
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+export const getAllLabResourcesRequests = () => async (dispatch) => {
+  dispatch({ type: "getAllLabResourcesRequestsRequest" });
+  try {
+    let { data } = await axios.get(`${server}/lend-lab-resources`, {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    });
+    dispatch({ type: "getAllLabResourcesRequestsSuccess", payload: data });
+  } catch (error) {
+    dispatch({
+      type: "getAllLabResourcesRequestsFail",
+      payload: error.response.data.message,
+    });
+  }
+};

@@ -73,6 +73,41 @@ export const labReducer = createReducer(
       state.error = action.payload;
     },
 
+    createLendLabResourceRequest: (state) => {
+      state.loading = true;
+    },
+
+    createLendLabResourceRequestSuccess: (state, action) => {
+      state.loading = false;
+      state.message = action.payload.message;
+    },
+    createLendLabResourceRequestFail: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    changeLendLabResourceRequestStatusRequest: (state) => {
+      state.loading = true;
+    },
+    changeLendLabResourceRequestStatusSuccess: (state, action) => {
+      state.loading = false;
+      state.message = action.payload.message;
+    },
+    changeLendLabResourceRequestStatusFail: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    getAllLabResourcesRequestsRequest: (state) => {
+      state.loading = true;
+    },
+    getAllLabResourcesRequestsSuccess: (state, action) => {
+      state.loading = false;
+      state.lendItems = action.payload.requests;
+    },
+    getAllLabResourcesRequestsFail: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
     clearError: (state) => {
       state.error = null;
     },

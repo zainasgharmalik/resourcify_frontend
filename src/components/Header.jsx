@@ -1,5 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { assets } from "../assets";
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/actions/user";
 
 const Header = ({ isAuthenticated, user }) => {
   const location = useLocation();
@@ -9,6 +11,8 @@ const Header = ({ isAuthenticated, user }) => {
       return true;
     } else return false;
   };
+
+  const dispatch = useDispatch()
   return (
     <header
       className={
@@ -16,7 +20,7 @@ const Header = ({ isAuthenticated, user }) => {
           (isAuthenticated && user.role === "librarian") ||
           (isAuthenticated && user.role === "lab_attendant")
           ? "hidden"
-          : "lg:px-[50px] bg-white px-[25px] lg:h-[85px] h-[80px] fixed top-0 left-0 w-full border-b border-zinc-300"
+          : "lg:px-[50px] bg-white px-[25px] lg:h-[85px] h-[80px] fixed top-0 left-0 w-full border-b border-zinc-300 z-50"
       }
     >
       <nav className="flex items-center justify-between w-full h-full bg-white">
@@ -54,12 +58,14 @@ const Header = ({ isAuthenticated, user }) => {
           </Link>
         </div>
 
-        <div className={isAuthenticated ? "" : "hidden"}>
+        <div className={`${isAuthenticated ? "" : "hidden"} flex items-center gap-[8px]`}>
           <img
             className="object-cover object-center rounded-full"
             src="https://placehold.co/56x56"
             alt=""
           />
+
+          <button onClick={() => { dispatch(logout()) }}>Logout</button>
         </div>
       </nav>
     </header>
