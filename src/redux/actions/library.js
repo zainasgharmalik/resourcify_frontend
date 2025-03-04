@@ -135,12 +135,12 @@ export const getAllLendItemsRequests = () => async (dispatch) => {
 };
 
 export const createLendItemsRequest =
-  (item, startDate, endDate) => async (dispatch) => {
+  (item, name, regNo, department, email, phone, startDate, endDate) => async (dispatch) => {
     dispatch({ type: "createLendItemRequestRequest" });
     try {
       const { data } = await axios.post(
         `${server}/lend-library-item`,
-        { item, startDate, endDate },
+        { item, name, regNo, department, email, phone, startDate, endDate},
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,

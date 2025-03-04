@@ -100,12 +100,13 @@ export const deleteLabResource = (id) => async (dispatch) => {
 };
 
 export const createLendLabResourceRequest =
-  (item, purpose) => async (dispatch) => {
+  (name, regNumber, email, phoneNo, department, item, purpose) =>
+  async (dispatch) => {
     dispatch({ type: "createLendLabResourceRequest" });
     try {
       let { data } = await axios.post(
         `${server}/lend-lab-resource`,
-        { item, purpose },
+        { name, regNumber, email, phoneNo, department, item, purpose },
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,

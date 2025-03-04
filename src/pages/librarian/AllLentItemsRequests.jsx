@@ -25,6 +25,9 @@ const AllLentItemsRequests = () => {
                         <th>Sr</th>
                         <th>Date</th>
                         <th>Borrower</th>
+                        <th>Role</th>
+                        <th>Email</th>
+                        <th>Phone</th>
                         <th>Item</th>
                         <th>Start Date</th>
                         <th>End Date</th>
@@ -41,9 +44,12 @@ const AllLentItemsRequests = () => {
                             <td>
                                 <div className="flex items-center gap-2">
                                     <img src="https://placehold.co/36x36" alt="" className="w-[56px] h-[56px] rounded-full object-cover object-center" />
-                                    <span>{i?.borrower?.name}</span>
+                                    <span>{i?.name || "Nill"}</span>
                                 </div>
                             </td>
+                            <td className="capitalize">{i.borrower.role}</td>
+                            <td>{i.email}</td>
+                            <td className="capitalize">{i.phone}</td>
                             <td>
                                 <div className="flex items-center gap-2">
                                     <img src={i?.item?.file?.url} alt="" className="w-[56px] h-[56px] rounded object-cover object-center" />

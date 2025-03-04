@@ -24,6 +24,9 @@ const AllLabResourcesRequests = () => {
                     <tr>
                         <th>Sr</th>
                         <th>Borrower</th>
+                        <th>Role</th>
+                        <th>Email</th>
+                        <th>Phone</th>
                         <th>Item</th>
                         <th>Purpose</th>
                         <th>Status</th>
@@ -37,15 +40,19 @@ const AllLabResourcesRequests = () => {
                         <td>
                             <div className="flex items-center gap-2">
                                 <img src="https://placehold.co/36x36" alt="" className="w-[56px] h-[56px] rounded-full object-cover object-center" />
-                                <span>{l?.borrower?.name}</span>
+                                <span>{l?.name}</span>
                             </div>
                         </td>
+                        <td className="capitalize">{l.borrower.role}</td>
+                        <td className="capitalize">{l.email}</td>
+                        <td className="capitalize">{l.phone}</td>
                         <td>
                             <div className="flex items-center gap-2">
                                 <img src={l?.item?.image?.url} alt="" className="w-[56px] h-[56px] rounded object-cover object-center" />
                                 <span>{l?.item?.title}</span>
                             </div>
                         </td>
+
                         <td>
                             <p>{l.purpose}</p>
                         </td>
