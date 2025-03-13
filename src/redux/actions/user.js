@@ -69,3 +69,19 @@ export const logout = () => async (dispatch) => {
     dispatch({ type: "logoutFail", payload: error.response.data.message });
   }
 };
+
+
+export const getMyRequests = () => async (dispatch) => {
+  dispatch({ type: "getMyRequestsRequest" });
+
+  try {
+    const { data } = await axios.get(`${server}/my-requests`, {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    });
+
+    dispatch({ type: "getMyRequestsSuccess", payload: data });
+  } catch (error) {
+    dispatch({ type: "getMyRequestsFail", payload: error.response.data.message });
+  }
+};

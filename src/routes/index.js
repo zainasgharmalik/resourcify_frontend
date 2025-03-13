@@ -15,9 +15,13 @@ import LabResourcesListing from "../pages/landing/LabResourcesListing";
 import LibraryListing from "../pages/landing/LibraryListing";
 import RoomsListing from "../pages/landing/RoomsListing";
 import AddNewLibraryItem from "../pages/librarian/AddNewLibraryItem";
+import AddNewRoom from "../pages/librarian/AddNewRoom";
 import AllLentItemsRequests from "../pages/librarian/AllLentItemsRequests";
+import AllRooms from "../pages/librarian/AllRooms";
+import EditRoom from "../pages/librarian/EditRoom";
 import LibraryItems from "../pages/librarian/LibraryItems";
 import UpdateLibraryItem from "../pages/librarian/UpdateLibraryItem";
+import Profile from "../pages/other/Profile";
 
 export const routes = [
   {
@@ -106,6 +110,11 @@ export const adminRoutes = [
     path: "/library-items",
     element: Dashboard,
   },
+  {
+    title: "Profile",
+    path: "/me",
+    element: Profile,
+  },
 ];
 
 export const librarianRoutes = [
@@ -132,6 +141,31 @@ export const librarianRoutes = [
     title: "Requests",
     element: AllLentItemsRequests,
   },
+
+  {
+    path: "/librarian/rooms",
+    title: "Rooms",
+    element: AllRooms,
+  },
+
+  {
+    path: "/librarian/room/add",
+    title: "Rooms",
+    element: AddNewRoom,
+  },
+
+  {
+    path: "/librarian/room/:id/edit",
+    title: "Rooms",
+    element: EditRoom,
+  },
+
+  
+  {
+    title: "Profile",
+    path: "/me",
+    element: Profile,
+  },
 ];
 
 export const labAttendantRoutes = [
@@ -157,5 +191,10 @@ export const labAttendantRoutes = [
     path: "/lab_attendant/resource/:id/update",
     title: "Update Lab Resource",
     element: UpdateLabResource,
+  },
+  {
+    title: "Profile",
+    path: "/me",
+    element: Profile,
   },
 ];

@@ -13,6 +13,8 @@ import Loading from "./pages/other/Loading";
 import toast, { Toaster } from "react-hot-toast";
 import { sLabAttendantRoutes, sLibrarianRoutes } from "./routes/sidebarRoute";
 import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
+import Profile from "./pages/other/Profile";
+import MyRequests from "./pages/other/MyRequests";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -53,6 +55,14 @@ const App = () => {
         <Header isAuthenticated={isAuthenticated} user={user} />
 
         <Routes>
+
+          <Route path="/me" element={<ProtectedRoute isAuthenticated={isAuthenticated} redirect={"/login"}>
+            <Profile />
+          </ProtectedRoute>} />
+
+          <Route path="/my-requests" element={<ProtectedRoute isAuthenticated={isAuthenticated} redirect={"/login"}>
+            <MyRequests />
+          </ProtectedRoute>} />
           {routes.map((r, index) => (
             <Route key={index} path={r.path} element={<r.element />} />
           ))}

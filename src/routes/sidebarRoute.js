@@ -34,6 +34,30 @@ export const sLibrarianRoutes = [
       },
     ],
   },
+
+  {
+    label: "Discussion Rooms",
+    icon: RiDashboardLine,
+    isExtendAble: true,
+    subRoutes: [
+      {
+        label: "View All",
+        value: "/librarian/rooms",
+        icon: RiDashboardLine,
+      },
+      {
+        label: "Add New Item",
+        value: "/librarian/room/add",
+        icon: RiDashboardLine,
+      },
+
+      {
+        value: "/librarian/requests",
+        label: "Requests",
+        icon: RiDashboardLine,
+      },
+    ],
+  },
 ];
 
 export const sLabAttendantRoutes = [

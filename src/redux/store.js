@@ -2,6 +2,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import { userReducer } from "./reducers/userReducer";
 import { libraryReducer } from "./reducers/libraryReducer";
 import { labReducer } from "./reducers/labReducer";
+import { otherReducer } from "./reducers/otherReducer";
+import { roomReducer } from "./reducers/roomReducer";
 
 export const server = "http://localhost:4000/api/v1";
 
@@ -10,6 +12,8 @@ const store = configureStore({
     user: userReducer,
     library: libraryReducer,
     lab: labReducer,
+    room: roomReducer,
+    other: otherReducer,
   },
 });
 

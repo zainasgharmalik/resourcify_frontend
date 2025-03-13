@@ -2,9 +2,12 @@ import { Link, useLocation } from "react-router-dom";
 import { assets } from "../assets";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/actions/user";
-
+import { IoIosArrowDown } from "react-icons/io";
+import { useState } from "react";
+import { FaRegUser } from "react-icons/fa";
 const Header = ({ isAuthenticated, user }) => {
   const location = useLocation();
+  const [visible, setVisible] = useState(false);
 
   const isActive = (path) => {
     if (path === location.pathname) {
@@ -59,13 +62,32 @@ const Header = ({ isAuthenticated, user }) => {
         </div>
 
         <div className={`${isAuthenticated ? "" : "hidden"} flex items-center gap-[8px]`}>
-          <img
-            className="object-cover object-center rounded-full"
-            src="https://placehold.co/56x56"
-            alt=""
-          />
+          <div className="flex items-center gap-2">
+            <img
+              className="object-cover object-center rounded-full"
+              src="https://placehold.co/56x56"
+              alt=""
+            />
 
-          <button onClick={() => { dispatch(logout()) }}>Logout</button>
+            <button>
+              <IoIosArrowDown className={`font-[600] text-lg ${visible ? "rotate-180" : ""}`} onClick={() => setVisible(!visible)} />
+            </button>
+          </div>
+
+          <div className={`${visible ? "w-[250px] bg-white border border-zinc-200 p-4 rounded-md absolute top-[100px] right-[50px] flex flex-col gap-2" : "hidden"}`}>
+            <Link to={`/me`} className="w-full  p-2 flex gap-2 rounded-md items-center hover:bg-zinc-200">
+              <span><FaRegUser /></span>
+              <span>Profile</span>
+            </Link>
+
+            
+
+            <Link to={`/my-requests`} className="w-full  p-2 flex gap-2 rounded-md items-center hover:bg-zinc-200">
+              <span><FaRegUser /></span>
+              <span>My Requests</span>
+            </Link>
+            <button className="primary-btn !p-2 !w-full" onClick={() => { dispatch(logout()) }}>Logout</button>
+          </div>
         </div>
       </nav>
     </header>
