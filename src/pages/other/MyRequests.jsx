@@ -103,7 +103,7 @@ const MyRequests = () => {
                             <td>{formatDateAndTime(item.createdAt).formattedDate}</td>
                             <td>
                                 <div className="flex items-center gap-2">
-                                    <img src={item?.item?.file?.url} alt="" className="w-[56px] h-[56px] rounded object-cover object-center" />
+                                    <img src={item?.room?.coverImage?.url} alt="" className="w-[56px] h-[56px] rounded object-cover object-center" />
                                     <span>{item?.item?.title}</span>
                                 </div>
                             </td>

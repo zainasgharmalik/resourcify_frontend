@@ -16,6 +16,7 @@ import LibraryListing from "../pages/landing/LibraryListing";
 import RoomsListing from "../pages/landing/RoomsListing";
 import AddNewLibraryItem from "../pages/librarian/AddNewLibraryItem";
 import AddNewRoom from "../pages/librarian/AddNewRoom";
+import AllBookings from "../pages/librarian/AllBookings";
 import AllLentItemsRequests from "../pages/librarian/AllLentItemsRequests";
 import AllRooms from "../pages/librarian/AllRooms";
 import EditRoom from "../pages/librarian/EditRoom";
@@ -158,6 +159,12 @@ export const librarianRoutes = [
     path: "/librarian/room/:id/edit",
     title: "Rooms",
     element: EditRoom,
+  },
+
+  {
+    path: "/librarian/bookings",
+    title: "Bookings",
+    element: AllBookings,
   },
 
   

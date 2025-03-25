@@ -52,8 +52,8 @@ export const sLibrarianRoutes = [
       },
 
       {
-        value: "/librarian/requests",
-        label: "Requests",
+        value: "/librarian/bookings",
+        label: "Bookings",
         icon: RiDashboardLine,
       },
     ],
