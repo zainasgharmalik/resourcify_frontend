@@ -11,6 +11,7 @@ export const otherReducer = createReducer(
       state.loading = false;
       state.libraryItems = action.payload.libraryItems;
       state.labResources = action.payload.labResources;
+      state.roomBookings = action.payload.roomBookings;
     },
 
     getMyRequestsFail: (state, action) => {

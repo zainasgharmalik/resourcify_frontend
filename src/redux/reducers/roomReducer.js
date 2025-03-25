@@ -78,6 +78,20 @@ export const roomReducer = createReducer(
       state.error = action.payload;
     },
 
+    requestBookingRequest: (state) => {
+      state.loading = true;
+    },
+
+    requestBookingSuccess: (state, action) => {
+      state.loading = false;
+      state.message = action.payload.message;
+    },
+
+    requestBookingFail: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
     changeBookingStatusRequest: (state) => {
       state.loading = true;
     },

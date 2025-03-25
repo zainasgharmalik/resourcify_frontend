@@ -6,10 +6,12 @@ import { Link } from 'react-router-dom'
 
 const MyRequests = () => {
     const dispatch = useDispatch()
-    const { libraryItems, labResources } = useSelector(state => state.other)
+    const { libraryItems, labResources, roomBookings } = useSelector(state => state.other)
     useEffect(() => {
         dispatch(getMyRequests())
     }, [])
+
+
     return (
         <section className='w-full flex flex-col gap-4 bg-gray-100 min-h-screen'>
             <div className='w-full border border-zinc-200 p-4 rounded-md bg-white'>
@@ -85,12 +87,30 @@ const MyRequests = () => {
                 <table>
                     <thead>
                         <tr>
+                            <th>Sr</th>
                             <th>Date</th>
-                            <th>Item</th>
+                            <th>Room</th>
+                            <th>Time Duration</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
+
+                    <tbody>
+
+                        {roomBookings && roomBookings.length > 0 && roomBookings.map((item, index) => <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{formatDateAndTime(item.createdAt).formattedDate}</td>
+                            <td>
+                                <div className="flex items-center gap-2">
+                                    <img src={item?.item?.file?.url} alt="" className="w-[56px] h-[56px] rounded object-cover object-center" />
+                                    <span>{item?.item?.title}</span>
+                                </div>
+                            </td>
+                            <td>{formatDateAndTime(item.startTime).formattedTime} to {formatDateAndTime(item.endTime).formattedTime}</td>
+                            <td className='capitalize'>{item.status}</td>
+                        </tr>)}
+                    </tbody>
 
                 </table>
             </div>

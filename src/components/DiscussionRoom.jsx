@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 
 const DiscussionRoom = ({ title, image, status, id }) => {
   return (
-    <Link>
+    <Link to={`/discussion-room/${id}/book`}>
       <div className="w-full h-[350px] rounded-lg overflow-hidden relative group">
         {/* Image */}
         <img
           src={image}
           alt=""
-          className="object-cover object-center w-full h-full transition-transform duration-300 group-hover:scale-110" 
+          className="object-cover object-center w-full h-full transition-transform duration-300 group-hover:scale-110"
         />
 
         {/* Overlay */}

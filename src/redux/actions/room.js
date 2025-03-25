@@ -102,3 +102,26 @@ export const changeBookingStatus = (id, status) => async (dispatch) => {
     });
   }
 };
+
+export const requestBooking =
+  (roomId, name, rollNo, email, startTime, endTime, purpose) =>
+  async (dispatch) => {
+    dispatch({ type: "requestBookingRequest" });
+    try {
+      let { data } = await axios.post(
+        `${server}/booking`,
+        { roomId, name, rollNo, email, startTime, endTime, purpose },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+
+      dispatch({ type: "requestBookingSuccess", payload: data });
+    } catch (error) {
+      dispatch({
+        type: "requestBookingFail",
+        payload: error.response.data.message,
+      });
+    }
+  };
